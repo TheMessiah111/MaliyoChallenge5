@@ -63,8 +63,8 @@ public class TargetX : MonoBehaviour
 
         if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad"))
         {
-            // gameManagerX.GameOver();
-            // gameManagerX.isGameActive = false;
+            gameManagerX.GameOver();
+            gameManagerX.isGameActive = false;
         } 
 
     }
@@ -81,8 +81,8 @@ public class TargetX : MonoBehaviour
         yield return new WaitForSeconds(timeOnScreen);
         if (gameManagerX.isGameActive)
         {
-            Destroy(gameObject);
-            // transform.Translate(Vector3.forward * 5, Space.World);
+            transform.Translate(Vector3.forward * 5, Space.World);
+            gameManagerX.isGameActive = false;
         }
 
     }
