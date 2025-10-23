@@ -64,7 +64,7 @@ public class TargetX : MonoBehaviour
         if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad"))
         {
             gameManagerX.GameOver();
-            gameManagerX.isGameActive = false;
+            // gameManagerX.isGameActive = false;
         } 
 
     }
@@ -82,7 +82,7 @@ public class TargetX : MonoBehaviour
         if (gameManagerX.isGameActive)
         {
             transform.Translate(Vector3.forward * 5, Space.World);
-            gameManagerX.isGameActive = false;
+            // gameManagerX.isGameActive = false;
         }
 
     }

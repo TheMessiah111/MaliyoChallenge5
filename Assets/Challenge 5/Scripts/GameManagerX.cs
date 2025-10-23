@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameManagerX : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timerText;
     public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
     public Button restartButton; 
@@ -21,17 +22,34 @@ public class GameManagerX : MonoBehaviour
     private float spaceBetweenSquares = 2.5f; 
     private float minValueX = -3.75f; //  x value of the center of the left-most square
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
-    
+   
+
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
     public void StartGame(int difficulty)
     {
         spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
+        StartCoroutine(CountdownRoutine());
         score = 0;
         UpdateScore(0);
         titleScreen.SetActive(false);
+        
     }
+
+
+
+    IEnumerator CountdownRoutine()
+{
+    for (int time = 60; time > 0; time--)
+    {
+        timerText.text = "Time: " + time;
+        yield return new WaitForSeconds(1f); // wait one second
+    }
+
+        timerText.text = "Time: 0";
+        GameOver();
+}
 
     // While game is active spawn a random target
     IEnumerator SpawnTarget()
